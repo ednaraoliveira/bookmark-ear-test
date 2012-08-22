@@ -20,11 +20,13 @@
 			<artifactId>demoiselle-jpa</artifactId>
 			<scope>compile</scope>
 		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>br.gov.frameworkdemoiselle</groupId>
 			<artifactId>demoiselle-jta</artifactId>
 			<scope>compile</scope>
 		</dependency>
+		 -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>

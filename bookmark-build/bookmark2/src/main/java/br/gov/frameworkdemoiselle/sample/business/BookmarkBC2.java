@@ -1,22 +1,52 @@
 package br.gov.frameworkdemoiselle.sample.business;
 
-import static br.gov.frameworkdemoiselle.annotation.Startup.MAX_PRIORITY;
 import static br.gov.frameworkdemoiselle.annotation.Startup.MIN_PRIORITY;
+
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+
+
+
+import br.gov.frameworkdemoiselle.annotation.Name;
+import br.gov.frameworkdemoiselle.annotation.Priority;
 import br.gov.frameworkdemoiselle.annotation.Shutdown;
 import br.gov.frameworkdemoiselle.annotation.Startup;
+import br.gov.frameworkdemoiselle.sample.config.PropertiesConfig;
+import br.gov.frameworkdemoiselle.sample.domain.Bookmark2;
+import br.gov.frameworkdemoiselle.sample.persistence.BookmarkDAO2;
+import br.gov.frameworkdemoiselle.sample.security.Login;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-
-import br.gov.frameworkdemoiselle.sample.domain.Bookmark2;
-import br.gov.frameworkdemoiselle.sample.persistence.BookmarkDAO2;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 
 @BusinessController
 public class BookmarkBC2 extends DelegateCrud<Bookmark2, Long, BookmarkDAO2> {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Startup(priority = 2)
+	@Inject
+	@Name("messages-core")
+	private ResourceBundle bundle;
+	
+	@Inject
+	PropertiesConfig propertiesConfig;
+	
+	@Inject
+	Login login;
+	
+	@Inject
+	Logger logger;
+	
+	@Inject
+	private SecurityContext securityContext;	
+	
+
+	//@Priority(3)
+	@Startup
 	@Transactional
 	public void load() {
 		if (findAll().isEmpty()) {
@@ -32,25 +62,54 @@ public class BookmarkBC2 extends DelegateCrud<Bookmark2, Long, BookmarkDAO2> {
 			insert(new Bookmark2("Downloads", "http://download.frameworkdemoiselle.gov.br"));
 		}
 	}
-	
+	/*
 	@Startup(priority = 1)
 	public void initServer() {
-		System.out.println("********************** INICIANDO O SERVIDOR 2 ********************** ");
+		logger.info("********************** INICIANDO O SERVIDOR 2 ********************** ");
 	}
 	
-	@Startup(priority = 2)
+	@Priority(2)
+	@Startup(priority = 3)
 	public void executeGrant() {
-		System.out.println("********************** HABILITANDO AS PERMISSÕES 2 ********************** ");
+		logger.info("********************** HABILITANDO AS PERMISSÕES 2 ********************** ");
 	}
-	
-	@Shutdown(priority = 1)
+
+	@Startup(priority = MIN_PRIORITY)
+	public void readConfig() {
+		logger.info("********************** CONFIGURACOES ********************** ");
+		logger.info("backgroundColor....: " + propertiesConfig.getBackgroundColor());
+		logger.info("fontFamily.........: " + propertiesConfig.getFontFamily());
+		logger.info("fontColor..........: " + propertiesConfig.getFontColor());
+		logger.info("fontSize...........: " + propertiesConfig.getFontSize());
+		logger.info("textAlign..........: " + propertiesConfig.getAlign());
+		logger.info("resourseBundle.....: " + bundle.getString("button.test"));
+	}
+
+	@Priority(1)
+	@Shutdown
 	public void removeGrant() {
-		System.out.println("********************** DESABILITANDO AS PERMISSÕES 2 ********************** ");
+		logger.info("********************** DESABILITANDO AS PERMISSÕES 2 ********************** ");
 	}
 	
-	@Shutdown(priority = 2)
+	@Priority(2)
+	@Shutdown
 	public void stopServer() {
-		System.out.println("********************** FINALIZANDO O SERVIDOR 2 ********************** ");
-	}		
+		logger.info("********************** FINALIZANDO O SERVIDOR 2 ********************** ");
+	}	
+	
+	@Override
+	@RequiredRole("admin")
+	public void insert(Bookmark2 bean) {
+		logger.info("Inserindo...");
+		super.insert(bean);
+	}	
+	*/
+	public void logar() {
+		logger.info("LOGANDO...");
+		login.setLogin("admin");
+		login.setPassword("admin");
+		login.setRole("admin");
+		securityContext.login();
+	}	
 	
 }

@@ -44,4 +44,7 @@ public class BookmarkListMB extends AbstractListPageBean<Bookmark, Long> {
 		return getPreviousView();
 	}
 
+	public void logar() {
+		bc.logar();
+	}
 }

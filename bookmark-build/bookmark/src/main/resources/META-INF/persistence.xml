@@ -4,6 +4,7 @@
 
 	<!-- If you are using jboss6 with non JTA transaction then use this persistence-unit -->
 	<!--
+	-->
 	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
 		<non-jta-data-source>java:jboss/datasources/ExampleDS</non-jta-data-source>
 		
@@ -15,7 +16,6 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
-	-->
 	
 		
 	<!-- If you are using JBoss AS7 with JTA transaction then use this persistence-unit -->
@@ -53,7 +53,6 @@
 
 	<!-- If you are using GlassFish 3 with non JTA transaction then use this persistence-unit -->
 	<!--
-	-->
 	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
 		<non-jta-data-source>jdbc/__TimerPool</non-jta-data-source>
 
@@ -65,6 +64,7 @@
 			<property name="eclipselink.ddl-generation.output-mode" value="database" />
 		</properties>
 	</persistence-unit>
+	-->
 
 	<!-- If you are using tomcat6/tomcat7/junit then use this persistence-unit -->
 	<!--

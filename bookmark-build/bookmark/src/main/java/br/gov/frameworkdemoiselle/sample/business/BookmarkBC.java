@@ -1,15 +1,15 @@
 package br.gov.frameworkdemoiselle.sample.business;
 
-import static br.gov.frameworkdemoiselle.annotation.Startup.MIN_PRIORITY;
 
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
 import br.gov.frameworkdemoiselle.annotation.Name;
 import br.gov.frameworkdemoiselle.annotation.Priority;
-import br.gov.frameworkdemoiselle.annotation.Shutdown;
-import br.gov.frameworkdemoiselle.annotation.Startup;
+import br.gov.frameworkdemoiselle.lifecycle.Shutdown;
+import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.sample.config.PropertiesConfig;
 import br.gov.frameworkdemoiselle.sample.domain.Bookmark;
 import br.gov.frameworkdemoiselle.sample.persistence.BookmarkDAO;
@@ -42,7 +42,7 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 	@Inject
 	private SecurityContext securityContext;	
 	
-	//@Priority(3)
+	@Priority(3)
 	@Startup
 	@Transactional
 	public void load() {
@@ -59,20 +59,21 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 			insert(new Bookmark("Downloads", "http://download.frameworkdemoiselle.gov.br"));
 		}
 	}
-	/*
 
-	@Startup(priority = 1)
+	@Priority(1)
+	@Startup
 	public void initServer() {
 		logger.info("********************** INICIANDO O SERVIDOR 1 ********************** ");
 	}
 
 	@Priority(2)
-	@Startup(priority = 3)
+	@Startup
 	public void executeGrant() {
 		logger.info("********************** HABILITANDO AS PERMISSÕES 1********************** ");
 	}
 
-	@Startup(priority = MIN_PRIORITY)
+	@Priority(4)
+	@Startup
 	public void readConfig() {
 		logger.info("********************** CONFIGURACOES ********************** ");
 		logger.info("backgroundColor....: " + propertiesConfig.getBackgroundColor());
@@ -101,8 +102,7 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 		logger.info("Inserindo...");
 		super.insert(bean);
 	}	
- */
-	
+ 	
 	public void logar() {
 		logger.info("LOGANDO...");
 		login.setLogin("admin");

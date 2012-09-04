@@ -47,7 +47,6 @@
 		<!-- 
 		PROFILE GLASSFISH
 		
-				 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -73,13 +72,14 @@
 			<artifactId>jta</artifactId>
 			<scope>provided</scope>
 		</dependency>
+				 -->
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.slf4j</groupId> -->
 <!-- 			<artifactId>slf4j-log4j12</artifactId> -->
 <!-- 			<scope>runtime</scope> -->
 <!-- 		</dependency> -->
 		
-		<!--  add -->
+		<!--
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -112,6 +112,7 @@
 			<artifactId>jsf-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		   -->
 
 
 	</dependencies>

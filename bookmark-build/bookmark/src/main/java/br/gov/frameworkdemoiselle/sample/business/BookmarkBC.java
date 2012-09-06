@@ -30,6 +30,7 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 	@Name("messages-core")
 	private ResourceBundle bundle;
 	
+	
 	@Inject
 	PropertiesConfig propertiesConfig;
 	

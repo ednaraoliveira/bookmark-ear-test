@@ -85,8 +85,8 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 	@Startup
 	public void readConfig() {
 		logger.info("********************** CONFIGURACOES ********************** ");
-		logger.info("backgroundColor....: "
-				+ propertiesConfig.getBackgroundColor());
+		logger.info("Color..............: "
+				+ propertiesConfig.getColor());
 		logger.info("fontFamily.........: " + propertiesConfig.getFontFamily());
 		logger.info("fontColor..........: " + propertiesConfig.getFontColor());
 		logger.info("fontSize...........: " + propertiesConfig.getFontSize());

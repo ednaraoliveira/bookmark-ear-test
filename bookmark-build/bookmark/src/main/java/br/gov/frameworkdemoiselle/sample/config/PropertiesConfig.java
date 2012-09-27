@@ -42,7 +42,7 @@ import br.gov.frameworkdemoiselle.configuration.Configuration;
 @Configuration(resource="system")
 public class PropertiesConfig {
 
-	private String backgroundColor;
+	private String color;
 	private String fontFamily;
 	private String fontColor;
 	private String fontSize;
@@ -50,8 +50,8 @@ public class PropertiesConfig {
 	@Name("text-align")
 	private String align;
 	
-	public String getBackgroundColor() {
-		return backgroundColor;
+	public String getColor() {
+		return color;
 	}
 
 	public String getFontFamily() {
